@@ -8,10 +8,10 @@ get_filename () {
   echo "${PREFIX}_${NOW}.${EXT}"
 }
 
-# capture 10 seconds of video every 10 minutes for at most 2 hours
-seq 12 | while read counter; do
+# capture 10 seconds of video every 5 minutes for at most 2 hours
+seq 24 | while read counter; do
   FILENAME=`get_filename mp4`
   ffmpeg -y -video_size "${SCREEN_WIDTH}x${SCREEN_HEIGHT}" -framerate 30 \
     -f x11grab -i "$DISPLAY" -t 10 "$FILENAME"
-  sleep 590
+  sleep 290
 done
